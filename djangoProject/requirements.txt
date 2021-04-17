@@ -1,0 +1,7 @@
+# List of the python requirements that should be add in docker image.
+
+django
+psycopg2
+djangorestframework
+django-cors-headers
+djangorestframework-jwt
