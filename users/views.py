@@ -53,18 +53,18 @@ def authenticate_user(request):
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated, ])
-def get_user(self, request, *args, **kwargs):
+def get_user(request, *args, **kwargs):
+    self = object
     # serializer to handle turning our `User` object into something that
     # can be JSONified and sent to the client.
-    serializer = self.serializer_class(request.user)
-
+    serializer = UserSerializer(request.user)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated, ])
-def update_user(self, request, *args, **kwargs):
-    serializer_data = request.data.get('user', {})
+def update_user(request, *args, **kwargs):
+    serializer_data = request.data
 
     serializer = UserSerializer(
         request.user, data=serializer_data, partial=True
